@@ -5,11 +5,11 @@ const app = express()
 const PORT  = process.env.PORT || 3000
 
 const corsOptions = {
-    origin: "https://green-bush-0a3493e10.6.azurestaticapps.net",
+    origin: "https://green-bush-0a3493e10.6.azurestaticapps.net/",
     methods: "GET",
 };
 
-function rollDice() {
+function rollDie() {
     return Math.floor(Math.random() * 6) + 1;
 }
 
