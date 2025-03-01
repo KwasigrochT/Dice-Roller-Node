@@ -23,6 +23,10 @@ app.get("/roll-dice", (req, res) => {
     res.json({dice, total})
 })
 
+app.get ("/wake-up", (req, res) => {
+    res.json({ message: "Server is awake"})
+})
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })
