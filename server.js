@@ -9,11 +9,13 @@ const corsOptions = {
     methods: "GET",
 };
 
+app.use(cors(corsOptions))
+
 function rollDie() {
     return Math.floor(Math.random() * 6) + 1;
 }
 
-app.get("/roll-dice", cors(corsOptions), (req, res) => {
+app.get("/roll-dice", (req, res) => {
     let dice = [];
     let total = 0;
     
@@ -26,7 +28,7 @@ app.get("/roll-dice", cors(corsOptions), (req, res) => {
     res.json({dice, total})
 })
 
-app.get ("/wake-up", cors(corsOptions), (req, res) => {
+app.get ("/wake-up", (req, res) => {
     res.json({ message: "Server is awake"})
 })
 
