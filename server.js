@@ -1,10 +1,8 @@
 const express = require("express")
 const cors = require("cors")
 
-const app = express()
+app = express()
 const PORT  = process.env.PORT || 3000
-
-
 
 app.use(cors({origin: '*'}))
 app.use(express.json())
@@ -32,4 +30,11 @@ app.get ("/wake-up", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+})
+
+// Custom 404 page.
+app.use((request, response) => {
+    response.type('text/plain')
+    response.status(404)
+    response.send('404 - Not Found')
 })
