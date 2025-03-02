@@ -4,13 +4,10 @@ const cors = require("cors")
 const app = express()
 const PORT  = process.env.PORT || 3000
 
-const corsOptions = {
-    origin: "*",
-    methods: "GET",
-    allowedHeaders: ["Content-type"]
-};
 
-app.use(cors(corsOptions))
+app.use(cors())
+
+app.use(express.json())
 
 function rollDie() {
     return Math.floor(Math.random() * 6) + 1;
@@ -31,6 +28,13 @@ app.get("/roll-dice", (req, res) => {
 
 app.get ("/wake-up", (req, res) => {
     res.json({ message: "Server is awake"})
+})
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+    res.header("Access-Control-Allow-Headers", "Content-Type")
+    next();
 })
 
 app.listen(PORT, () => {
