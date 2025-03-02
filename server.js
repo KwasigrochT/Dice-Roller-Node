@@ -5,7 +5,7 @@ const app = express()
 const PORT  = process.env.PORT || 3000
 
 const corsOptions = {
-    origin: "https://green-bush-0a3493e10.6.azurestaticapps.net",
+    origin: "*",
     methods: "GET",
     allowedHeaders: ["Content-type"]
 };
