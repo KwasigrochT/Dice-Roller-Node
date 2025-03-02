@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REST API Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f4f4f9;
+      }
+      h1 {
+        color: #333;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .result {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #e9ecef;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test Your RESTful APIs</h1>
+    <div>
+      <button id="wakeUpBtn">Wake Up Server</button>
+      <button id="rollDiceBtn">Roll Dice</button>
+    </div>
+
+    <div id="result" class="result">
+      <!-- API response will be displayed here -->
+    </div>
+
+    <script>
+      const apiUrl = "https://dice-server-asdcf5edgtcrfka0.canadacentral-01.azurewebsites.net";
+
+      // Function to wake up the server
+      async function wakeUpServer() {
+        try {
+          let response = await fetch(`${apiUrl}/wake-up`);
+          let data = await response.json();
+          document.getElementById("result").textContent = `Server Response: ${data.message}`;
+        } catch (error) {
+          console.error("Error waking up server", error);
+          document.getElementById("result").textContent = "Failed to wake up server.";
+        }
+      }
+
+      // Function to roll the dice
+      async function rollDice() {
+        try {
+          let response = await fetch(`${apiUrl}/roll-dice`);
+          let data = await response.json();
+          document.getElementById("result").textContent = `You rolled: ${data.dice.join(
+            ", "
+          )} (Total: ${data.total})`;
+        } catch (error) {
+          console.error("Error rolling dice", error);
+          document.getElementById("result").textContent = "Failed to roll dice.";
+        }
+      }
+
+      // Event Listeners
+      document.getElementById("wakeUpBtn").addEventListener("click", wakeUpServer);
+      document.getElementById("rollDiceBtn").addEventListener("click", rollDice);
+    </script>
+  </body>
+</html>
