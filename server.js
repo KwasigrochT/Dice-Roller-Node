@@ -13,7 +13,6 @@ const corsOptions = {
 
 
 app.use(cors(corsOptions))
-
 app.use(express.json())
 
 function rollDie() {
@@ -35,13 +34,6 @@ app.get("/roll-dice", (req, res) => {
 
 app.get ("/wake-up", (req, res) => {
     res.json({ message: "Server is awake"})
-})
-
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://green-bush-0a3493e10.6.azurestaticapps.net")
-    res.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
-    res.header("Access-Control-Allow-Headers", "Content-Type")
-    next();
 })
 
 app.listen(PORT, () => {
