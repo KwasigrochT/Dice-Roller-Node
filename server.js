@@ -5,14 +5,8 @@ const app = express()
 const PORT  = process.env.PORT || 3000
 
 
-const corsOptions = {
-    origin: "https://green-bush-0a3493e10.6.azurestaticapps.net",
-    methods: "GET",
-    allowedHeaders: ["Content-Type"]
-}
 
-
-app.use(cors(corsOptions))
+app.use(cors({origin: "*"}))
 app.use(express.json())
 
 function rollDie() {
